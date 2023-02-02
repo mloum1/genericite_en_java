@@ -48,6 +48,27 @@ public class FileAttente<A> {
         return nbEntreesTotal;
     }
 
+    public static <A> boolean difFile(FileAttente<A> p, FileAttente<A> w) {
+        if (p.equals(w)) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean difFileNs(FileAttente<A> p) {
+        if (this.equals(p)) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean difFile3(FileAttente w) {
+        if (this.nbElements() == w.nbElements()) {
+            return true;
+        }
+        return false;
+    }
+
     /// programme qui crée et remplit une file d'attente de de personnes, puis une
     /// file d'attente de tâches
     public static void main(String[] args) {
@@ -84,7 +105,19 @@ public class FileAttente<A> {
         // va retourner 6
         System.out.println(taches.nbEntresTotal());
         System.out.println(personnes.nbEntresTotal());
-        
+        // verif des objets s'ils ont le même type et ont le même contenu cette methode
+        // ne peut pas retouner false car il te laissera pas la possibilité de mettre un
+        // type différent
+        System.out.println(FileAttente.difFile(personnes, personnes));
+        System.out.println(FileAttente.difFile(taches, taches));
+        // verif pareil pour celui d'en haut la seule différence c'est que celui la est
+        // statique et l'autre non
+        System.out.println(personnes.difFileNs(personnes));
+        System.out.println(taches.difFileNs(taches));
+
+        /// retourne true parce que les longueurs sont égaux
+        System.out.println(personnes.difFile3(taches));
+
     }
 
 }
